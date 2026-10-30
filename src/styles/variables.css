@@ -1,0 +1,40 @@
+
+:root {
+  /* Main background */
+  --color-bg: #321C1D;
+  --color-surface: #493027;
+  --color-surface-light: #542B2D;
+
+  /* Readable typography */
+  --color-text: #E9D9C4;
+  --color-text-secondary: #C9B6A3;
+  --color-muted: #B49B85;
+
+  /* Rust, burgundy and amber accents */
+  --color-primary: #B47750;
+  --color-primary-dark: #925C3D;
+  --color-accent: #B47750;
+  --color-accent-dark: #925C3D;
+  --color-gold: #D0A16D;
+
+  /* Portrait */
+  --color-portrait: #D4BE9D;
+
+  /* Borders */
+  --color-border: rgba(233, 217, 196, 0.16);
+  --color-border-hover: rgba(208, 161, 109, 0.55);
+
+  /* Layout */
+  --container-width: 1160px;
+  --page-padding: clamp(20px, 5vw, 64px);
+  --section-spacing: clamp(42px, 5vw, 68px);
+  --section-space: clamp(42px, 5vw, 68px);
+  --navbar-height: 72px;
+
+  /* Typography */
+  --font-body: "Source Sans 3", sans-serif;
+  --font-heading: "Lora", serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --transition: 0.3s ease;
+}
