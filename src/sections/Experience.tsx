@@ -1,6 +1,6 @@
 
 import SectionHeading from "../components/common/SectionHeading";
-
+import Reveal from "../components/common/Reveal";
 const experiences = [
   {
     role: "Founder",
@@ -29,17 +29,24 @@ function Experience() {
 
         <div className="experience-grid">
           {experiences.map((item, index) => (
-            <article className="experience-card" key={item.role}>
-              <span className="eyebrow">{item.type}</span>
+            <Reveal
+              key={item.role}
+              delay={index * 0.15}
+              direction={index % 2 === 0 ? "right" : "left"}
+              className="fill"
+            >
+              <article className="experience-card">
+                <span className="eyebrow">{item.type}</span>
 
-              <span className="experience-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+                <span className="experience-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-              <h3>{item.role}</h3>
-              <h4>{item.organization}</h4>
-              <p>{item.description}</p>
-            </article>
+                <h3>{item.role}</h3>
+                <h4>{item.organization}</h4>
+                <p>{item.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

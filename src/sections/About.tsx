@@ -1,22 +1,28 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../components/common/SectionHeading";
+import CatalogCard from "../components/common/CatalogCard";
+import Reveal from "../components/common/Reveal";
 
 function About() {
   return (
     <section className="section" id="about">
       <div className="container about-grid">
-        <div>
+        <div className="about-left">
           <SectionHeading
             eyebrow="A LITTLE ABOUT ME"
             title="Building with curiosity and purpose."
           />
+
+          <Reveal delay={0.15} direction="right">
+            <CatalogCard />
+          </Reveal>
         </div>
 
         <motion.div
           className="about-content"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 0.7 }}
         >
           <p>

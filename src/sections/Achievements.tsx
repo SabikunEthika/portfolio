@@ -1,25 +1,14 @@
 import SectionHeading from "../components/common/SectionHeading";
+import Reveal from "../components/common/Reveal";
 
 const achievements = [
   {
-    title: "Campus Ambassador",
-    organization: "STC — Think of Career",
+    title: "HULT PRIZE - FINALIST",
+    organization: "BUTEX"
   },
   {
-    title: "Adventure Resumption 1.0",
-    organization: "Notre Dame Outward Bound Adventure Club",
-  },
-  {
-    title: "Caza de Talento 1.0",
-    organization: "Vinnorup",
-  },
-  {
-    title: "Echo 1.0",
-    organization: "International Speaking Contest",
-  },
-  {
-    title: "Competitions & Hackathons",
-    organization: "BUP, IUT and AUST",
+    title: "Argumentative Thesis- Winner",
+    organization: "St. Joseph Higher Secondary School",
   },
 ];
 
@@ -30,18 +19,30 @@ function Achievements() {
         <SectionHeading
           eyebrow="ACTIVITIES & PARTICIPATION"
           title="Beyond academics."
+          description="The lending ledger: events, contests and communities I have taken part in."
         />
 
-        <div className="achievement-list">
-          {achievements.map((achievement, index) => (
-            <div className="achievement-item" key={achievement.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+        <div className="ledger">
+          <div className="ledger-head" aria-hidden="true">
+            <span>No.</span>
+            <span>Entry</span>
+            <span>Held by</span>
+          </div>
 
-              <div>
+          {achievements.map((achievement, index) => (
+            <Reveal
+              key={achievement.title}
+              delay={index * 0.08}
+              direction={index % 2 === 0 ? "right" : "left"}
+            >
+              <div className="ledger-row">
+                <span className="ledger-no">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <h3>{achievement.title}</h3>
                 <p>{achievement.organization}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

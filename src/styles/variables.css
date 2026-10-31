@@ -32,9 +32,9 @@
   --navbar-height: 72px;
 
   /* Typography */
-  --font-body: "Source Sans 3", sans-serif;
-  --font-heading: "Lora", serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-heading: "IM Fell English", Georgia, serif;
+  --font-mono: "Special Elite", "Courier New", monospace;
 
   --transition: 0.3s ease;
 }

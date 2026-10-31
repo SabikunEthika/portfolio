@@ -1,7 +1,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "../components/common/SectionHeading";
-
+import Reveal from "../components/common/Reveal";
 const featuredProjects = [
   {
     number: "01",
@@ -64,34 +64,40 @@ function Projects() {
         />
 
         <div className="projects-grid">
-          {featuredProjects.map((project) => (
-            <article className="project-card" key={project.number}>
-              <div className="project-top">
-                <span className="project-number">{project.number}</span>
-                <span className="project-category">{project.category}</span>
-              </div>
+          {featuredProjects.map((project, index) => (
+            <Reveal
+              key={project.number}
+              delay={(index % 2) * 0.12}
+              className="fill"
+            >
+              <article className="project-card">
+                <div className="project-top">
+                  <span className="project-number">{project.number}</span>
+                  <span className="project-category">{project.category}</span>
+                </div>
 
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
 
-              <div className="project-tags">
-                {project.technologies.map((technology) => (
-                  <span key={technology}>{technology}</span>
-                ))}
-              </div>
+                <div className="project-tags">
+                  {project.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </div>
 
-              <div className="project-links">
-                <a href={project.github} target="_blank" rel="noreferrer">
-                  GitHub <ArrowUpRight size={15} />
-                </a>
-
-                {project.live && (
-                  <a href={project.live} target="_blank" rel="noreferrer">
-                    Live project <ArrowUpRight size={15} />
+                <div className="project-links">
+                  <a href={project.github} target="_blank" rel="noreferrer">
+                    GitHub <ArrowUpRight size={15} />
                   </a>
-                )}
-              </div>
-            </article>
+
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noreferrer">
+                      Live project <ArrowUpRight size={15} />
+                    </a>
+                  )}
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 
 import SectionHeading from "../components/common/SectionHeading";
+import Reveal from "../components/common/Reveal";
 
 const skillGroups = [
   {
@@ -52,19 +53,21 @@ function Skills() {
 
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
-            <article className="skill-card" key={group.title}>
-              <span className="skill-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+            <Reveal key={group.title} delay={index * 0.1} className="fill">
+              <article className="skill-card">
+                <span className="skill-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-              <h3>{group.title}</h3>
+                <h3>{group.title}</h3>
 
-              <div className="skill-tags">
-                {group.skills.map((skill) => (
-                  <span key={skill}>{skill}</span>
-                ))}
-              </div>
-            </article>
+                <div className="skill-tags">
+                  {group.skills.map((skill) => (
+                    <span key={skill}>{skill}</span>
+                  ))}
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,5 +1,26 @@
 import { ArrowUpRight, Mail, Phone, MapPin } from "lucide-react";
 import SectionHeading from "../components/common/SectionHeading";
+import Reveal from "../components/common/Reveal";
+
+const slips = [
+  {
+    label: "Correspondence",
+    value: "alam.sabikun04@gmail.com",
+    href: "mailto:alam.sabikun04@gmail.com",
+    icon: Mail,
+  },
+  {
+    label: "Telephone",
+    value: "+880 1895-654284",
+    href: "tel:+8801895654284",
+    icon: Phone,
+  },
+  {
+    label: "Reading room",
+    value: "Dhaka, Bangladesh",
+    icon: MapPin,
+  },
+];
 
 function Contact() {
   return (
@@ -11,43 +32,54 @@ function Contact() {
           description="I'm interested in meaningful projects, thoughtful collaboration and opportunities to keep learning."
         />
 
-        <div className="contact-grid">
-          <a href="mailto:alam.sabikun04@gmail.com" className="contact-item">
-            <Mail size={20} />
-            <div>
-              <span>Email</span>
-              <p>alam.sabikun04@gmail.com</p>
-            </div>
-            <ArrowUpRight size={17} />
-          </a>
+        <div className="ct-grid">
+          {slips.map((slip, index) => {
+            const Icon = slip.icon;
 
-          <a href="tel:+8801895654284" className="contact-item">
-            <Phone size={20} />
-            <div>
-              <span>Phone</span>
-              <p>+880 1895-654284</p>
-            </div>
-            <ArrowUpRight size={17} />
-          </a>
+            const content = (
+              <>
+                <span className="ct-tape" aria-hidden="true" />
+                <span className="ct-icon">
+                  <Icon size={20} />
+                </span>
+                <span className="ct-label">{slip.label}</span>
+                <span className="ct-value">{slip.value}</span>
+                {slip.href && (
+                  <ArrowUpRight size={18} className="ct-arrow" />
+                )}
+              </>
+            );
 
-          <div className="contact-item">
-            <MapPin size={20} />
-            <div>
-              <span>Location</span>
-              <p>Dhaka, Bangladesh</p>
-            </div>
-          </div>
+            return (
+              <Reveal
+                key={slip.label}
+                delay={index * 0.12}
+                direction="up"
+                className="fill"
+              >
+                {slip.href ? (
+                  <a href={slip.href} className="ct-slip">
+                    {content}
+                  </a>
+                ) : (
+                  <div className="ct-slip">{content}</div>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
 
-        <a
-          href="https://linkedin.com/in/sabikun027"
-          target="_blank"
-          rel="noreferrer"
-          className="button-primary contact-button"
-        >
-          Connect on LinkedIn
-          <ArrowUpRight size={16} />
-        </a>
+        <Reveal delay={0.3}>
+          <a
+            href="https://linkedin.com/in/sabikun027"
+            target="_blank"
+            rel="noreferrer"
+            className="button-primary contact-button"
+          >
+            Connect on LinkedIn
+            <ArrowUpRight size={16} />
+          </a>
+        </Reveal>
       </div>
     </section>
   );

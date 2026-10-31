@@ -1,13 +1,13 @@
-
 import { useEffect, useState } from "react";
-import { X, ZoomIn, ExternalLink } from "lucide-react";
+import { X, ZoomIn, ExternalLink, ChevronDown } from "lucide-react";
 import SectionHeading from "../components/common/SectionHeading";
+import Reveal from "../components/common/Reveal";
+import PdfThumb from "../components/common/PdfThumb";
 
 type Certificate = {
   number: number;
   title: string;
   issuer: string;
-  description: string;
   file: string;
   type: "image" | "pdf";
 };
@@ -17,7 +17,6 @@ const certificates: Certificate[] = [
     number: 1,
     title: "Think of Career",
     issuer: "STC",
-    description: "Campus Ambassador recognition.",
     file: "/certificates/1.jpg",
     type: "image",
   },
@@ -25,7 +24,6 @@ const certificates: Certificate[] = [
     number: 2,
     title: "Adventure Resumption 1.0",
     issuer: "Notre Dame Outward Bound Adventure Club",
-    description: "Participation recognition.",
     file: "/certificates/2.jpg",
     type: "image",
   },
@@ -33,7 +31,6 @@ const certificates: Certificate[] = [
     number: 3,
     title: "Echo 1.0",
     issuer: "International Speaking Contest",
-    description: "Speaking contest recognition.",
     file: "/certificates/3.jpg",
     type: "image",
   },
@@ -41,7 +38,6 @@ const certificates: Certificate[] = [
     number: 4,
     title: "Certificate 04",
     issuer: "Recognition",
-    description: "Certificate of achievement and participation.",
     file: "/certificates/4.jpg",
     type: "image",
   },
@@ -49,30 +45,33 @@ const certificates: Certificate[] = [
     number: 5,
     title: "Certificate 05",
     issuer: "Recognition",
-    description: "Certificate of achievement and participation.",
     file: "/certificates/5.jpg",
     type: "image",
   },
   ...Array.from({ length: 11 }, (_, index) => ({
     number: index + 6,
     title: `Certificate ${String(index + 6).padStart(2, "0")}`,
-    issuer: "Academic and extracurricular recognition",
-    description: "Certificate of achievement and participation.",
+    issuer: "Academic and extracurricular",
     file: `/certificates/${index + 6}.pdf`,
     type: "pdf" as const,
   })),
 ];
 
+const INITIAL_COUNT = 12;
+
 function Certificates() {
   const [selected, setSelected] = useState<Certificate | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visible = showAll
+    ? certificates
+    : certificates.slice(0, INITIAL_COUNT);
 
   useEffect(() => {
     if (!selected) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSelected(null);
-      }
+      if (event.key === "Escape") setSelected(null);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -90,47 +89,72 @@ function Certificates() {
         <SectionHeading
           eyebrow="LEARNING AND RECOGNITION"
           title="Certificates and credentials."
-          description="A collection of certificates and recognitions from academic, extracurricular and professional activities."
+          description="Filed in the drawer: recognitions from academic and extracurricular activities."
         />
 
-        <div className="certificates-grid">
-          {certificates.map((certificate) => (
-            <article className="certificate-card" key={certificate.number}>
-              <button
-                type="button"
-                className="certificate-preview"
-                onClick={() => setSelected(certificate)}
-                aria-label={`View ${certificate.title}`}
-              >
-                {certificate.type === "image" ? (
-                  <img
-                    src={certificate.file}
-                    alt={certificate.title}
-                    loading="lazy"
-                  />
-                ) : (
-                  <iframe
-                    src={`${certificate.file}#page=1&toolbar=0&navpanes=0`}
-                    title={`${certificate.title} preview`}
-                    loading="lazy"
-                    tabIndex={-1}
-                  />
-                )}
+        <div className="cert-grid">
+          {visible.map((certificate, index) => (
+            <Reveal
+              key={certificate.number}
+              delay={(index % 6) * 0.06}
+              className="fill"
+            >
+              <article className="cert-card">
+                <button
+                  type="button"
+                  className="cert-preview"
+                  onClick={() => setSelected(certificate)}
+                  aria-label={`View ${certificate.title}`}
+                >
+                  <span className="cert-tab">
+                    No. {String(certificate.number).padStart(2, "0")}
+                  </span>
 
-                <span className="certificate-zoom">
-                  <ZoomIn size={19} />
-                  View certificate
-                </span>
-              </button>
+                  {certificate.type === "image" ? (
+                    <img
+                      src={certificate.file}
+                      alt={certificate.title}
+                      loading="lazy"
+                    />
+                                 ) : (
+                    <PdfThumb
+                      file={certificate.file}
+                      title={certificate.title}
+                    />
+                  )}
 
-              <div className="certificate-info">
-                <h3>{certificate.title}</h3>
-                <p>{certificate.issuer}</p>
-                <p>{certificate.description}</p>
-              </div>
-            </article>
+                  <span className="cert-zoom">
+                    <ZoomIn size={16} />
+                  </span>
+                </button>
+
+                <div className="cert-info">
+                  <h3>{certificate.title}</h3>
+                  <p>{certificate.issuer}</p>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
+
+        {certificates.length > INITIAL_COUNT && (
+          <Reveal>
+            <button
+              type="button"
+              className="cert-toggle"
+              onClick={() => setShowAll(!showAll)}
+              aria-expanded={showAll}
+            >
+              {showAll
+                ? "Close the drawer"
+                : `Open the full drawer (${certificates.length})`}
+              <ChevronDown
+                size={16}
+                className={showAll ? "cert-chevron flip" : "cert-chevron"}
+              />
+            </button>
+          </Reveal>
+        )}
       </div>
 
       {selected && (
@@ -140,9 +164,7 @@ function Certificates() {
           aria-modal="true"
           aria-label={selected.title}
           onClick={(event) => {
-            if (event.target === event.currentTarget) {
-              setSelected(null);
-            }
+            if (event.target === event.currentTarget) setSelected(null);
           }}
         >
           <div className="certificate-modal">

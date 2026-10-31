@@ -10,6 +10,7 @@ import Experience from "../sections/Experience";
 import Projects from "../sections/Projects";
 import Certificates from "../sections/Certificates";
 import Contact from "../sections/Contact";
+import Achievements from "../sections/Achievements";
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
         <Skills />
         <Education />
         <Experience />
+        <Achievements />
         <Projects />
         <Certificates />
         <Contact />

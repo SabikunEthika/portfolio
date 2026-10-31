@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import {
   ArrowDown,
@@ -37,9 +36,7 @@ function Hero() {
             <span>Alam.</span>
           </h1>
 
-          <h2>
-        <h2>Full-Stack Software Developer</h2>
-          </h2>
+          <h2>Full-Stack Software Developer</h2>
 
           <p className="hero-description">
             I build end-to-end software solutions, from backend
@@ -106,21 +103,14 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
         >
-          <div className="hero-portrait-wrap">
-            <div className="portrait-halo" />
-            <div className="portrait-orbit" />
-
-            <div className="portrait-placeholder">
-              SA
-            </div>
-
+          <div className="portrait-frame">
             <motion.img
-              className="portrait-image"
-              src="/images/profile.png"
+              className="portrait-photo"
+              src="/images/profile.jpg"
               alt="Portrait of Sabikun Alam"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.35 }}
+              transition={{ duration: 0.9, delay: 0.3 }}
               onError={(event) => {
                 event.currentTarget.style.display = "none";
               }}

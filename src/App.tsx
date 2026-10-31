@@ -1,7 +1,8 @@
-
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import useLenis from "./hooks/useLenis";
+import CustomCursor from "./components/common/CustomCursor";
+import ArchiveBackground from "./components/common/ArchiveBackground";
 
 function App() {
   useLenis();
@@ -12,9 +13,13 @@ function App() {
   }, []);
 
   return (
-    <main className="app">
-      <Home />
-    </main>
+    <>
+      <ArchiveBackground />
+      <div className="app">
+        <CustomCursor />
+        <Home />
+      </div>
+    </>
   );
 }
 

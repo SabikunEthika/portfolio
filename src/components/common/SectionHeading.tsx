@@ -1,22 +1,22 @@
+import Reveal from "./Reveal";
+
 type SectionHeadingProps = {
   eyebrow: string;
   title: string;
   description?: string;
 };
 
-function SectionHeading({
-  eyebrow,
-  title,
-  description,
-}: SectionHeadingProps) {
+function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
   return (
-    <div className="section-heading">
-      <span className="eyebrow">{eyebrow}</span>
+    <Reveal>
+      <div className="section-heading">
+        <span className="eyebrow">{eyebrow}</span>
 
-      <h2>{title}</h2>
+        <h2>{title}</h2>
 
-      {description && <p>{description}</p>}
-    </div>
+        {description && <p className="section-description">{description}</p>}
+      </div>
+    </Reveal>
   );
 }
 
