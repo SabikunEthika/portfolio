@@ -31,8 +31,16 @@ function CatalogCard() {
     };
   }, [inView]);
 
-  let remaining = count;
-  let caretPlaced = false;
+  const renderedLines = lines.map((line, index) => {
+    const charactersBefore = lines
+      .slice(0, index)
+      .reduce((sum, previousLine) => sum + previousLine.length, 0);
+    const shown = line.slice(0, Math.max(0, count - charactersBefore));
+    const isTypingThisLine =
+      count >= charactersBefore && count < charactersBefore + line.length;
+
+    return { line, shown, isTypingThisLine };
+  });
 
   return (
     <div ref={ref} className="catalog-card">
@@ -47,17 +55,11 @@ function CatalogCard() {
       </p>
 
       <div className="catalog-lines">
-        {lines.map((line) => {
-          const shown = line.slice(0, Math.max(0, remaining));
-          remaining -= line.length;
-
-          const showCaret = !caretPlaced && shown.length < line.length;
-          if (showCaret) caretPlaced = true;
-
+        {renderedLines.map(({ line, shown, isTypingThisLine }) => {
           return (
             <p key={line}>
               {shown}
-              {showCaret && <span className="tw-caret" />}
+              {isTypingThisLine && <span className="tw-caret" />}
             </p>
           );
         })}
