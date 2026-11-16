@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import ProjectDetail from "./pages/ProjectDetail";
 import useLenis from "./hooks/useLenis";
 import CustomCursor from "./components/common/CustomCursor";
 import ArchiveBackground from "./components/common/ArchiveBackground";
@@ -15,10 +17,16 @@ function App() {
   return (
     <>
       <ArchiveBackground />
-      <div className="app">
-        <CustomCursor />
-        <Home />
-      </div>
+      <BrowserRouter>
+        <div className="app">
+          <CustomCursor />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
