@@ -672,7 +672,7 @@ a {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 21px;
+  padding: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border);
@@ -683,9 +683,9 @@ a {
 
 .project-image {
   display: block;
-  width: calc(100% + 42px);
+  width: 100%;
   aspect-ratio: 16 / 7;
-  margin: -21px -21px 17px;
+  margin: 0;
   object-fit: cover;
   border-bottom: 1px solid var(--border);
 }
@@ -694,6 +694,7 @@ a {
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: 21px;
 }
 
 .project-card:hover {
@@ -735,7 +736,7 @@ a {
   overflow-wrap: anywhere;
 }
 
-.project-card>p {
+.project-card-content > p {
   margin: 0 0 15px;
   color: var(--text-body);
   font-size: 0.94rem;
@@ -853,7 +854,7 @@ a {
 .project-detail-grid li + li { margin-top: 9px; }
 
 @media (max-width: 640px) {
-  .project-image { width: calc(100% + 42px); margin: -21px -21px 18px; }
+  .project-card-content { padding: 21px; }
   .project-detail-grid { grid-template-columns: 1fr; }
 }
 
