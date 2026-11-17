@@ -18,7 +18,7 @@ export const projects: Project[] = [
     image: "/projects/resume-orbit.png",
     description: "An AI-powered resume analyzer that evaluates resumes, identifies skill gaps and provides actionable feedback for job applications.",
     technologies: ["React", "TypeScript", "FastAPI", "Gemini"],
-    github: "https://github.com/SabikunEthika/AI_ResumeAnalyzer",
+    github: "https://github.com/SabikunEthika/AI_ResumeAnalyzer", live: "https://frontend-delta-one-f7arl0zj17.vercel.app/",
     challenges: ["Extracting useful structure from resumes with inconsistent layouts.", "Turning AI feedback into clear, actionable suggestions."],
     futurePlans: ["Add role-specific scoring and tailored resume templates.", "Support more document formats and saved analysis history."],
   },
