@@ -1471,6 +1471,17 @@ html.has-custom-cursor * {
   cursor: none !important;
 }
 
+html,
+body {
+  cursor: url("/cursor-arrow.svg") 5 4, default;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: url("/cursor-arrow.svg") 5 4, pointer;
+}
+
 .cursor-glow {
   position: fixed;
   left: 0;
@@ -2690,4 +2701,3 @@ html.has-custom-cursor * {
     border-radius: 0;
   }
 }
-
