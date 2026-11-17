@@ -2651,12 +2651,14 @@ html.has-custom-cursor * {
    HERO PORTRAIT (QUIET)
 ===================================================== */
 
+
 .portrait-frame {
   position: relative;
   width: clamp(280px, 32vw, 410px);
   aspect-ratio: 4 / 5;
   margin-left: auto;
   overflow: hidden;
+  border-radius: 0;
   outline: 1px solid rgba(208, 161, 109, 0.35);
   outline-offset: 12px;
   background: none;
@@ -2672,13 +2674,20 @@ html.has-custom-cursor * {
   padding: 3%;
   transform: none;
   filter: none;
+  border-radius: 0;
 }
 
 @media (max-width: 680px) {
   .portrait-frame {
     width: min(76vw, 320px);
     margin-inline: auto;
-    border-radius: 60% 18px 18px 60% / 50% 18px 18px 50%;
+    aspect-ratio: 4 / 5;
+    border-radius: 0;
     outline-offset: 9px;
   }
+
+  .portrait-photo {
+    border-radius: 0;
+  }
 }
+
